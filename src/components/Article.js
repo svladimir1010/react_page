@@ -28,7 +28,7 @@ import toggleOpen from '../decorators/toggleOpen'
 		//const { isOpen } = this.state
 		return (
 			<div>
-				<h3>{ article.title }</h3>
+				<h3>{ article.title }</h3> 
 						<button onClick={ toggleOpen }>
 								{ !isOpen ? "ОТКРЫТЬ" : "ЗАКРЫТЬ" }
 						</button>

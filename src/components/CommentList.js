@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import Comment from './Comment'
+import toggleOpen from '../decorators/toggleOpen'
 
-export default class CommentList extends Component {
+class CommentList extends Component {
 	static defaultProps = {
 		comments: []
 	}
-	state = { 
-			isOpen: false
-		}; 
+	// state = {      
+	// 		isOpen: false
+	// 	}; 
 	
 	render() {
-		const text = this.state.isOpen ? 'hide comments' : 'show comments'
+		const text = this.props.isOpen ? 'hide comments' : 'show comments'
 		return <div>
-					<button onClick = { this.toggleOpen }>{ text }</button>
+					<button onClick = { this.props.toggleOpen }>{ text }</button>
 					{ this.getBody() }
 				</div>
 	}
 	getBody() {
-		if (!this.state.isOpen) return null
-			const { comments } = this.props
+			const { comments, isOpen } = this.props
+		if (!isOpen) return null
 		// if (!comments || !comments.length) return <p>No comments yet</p>   добавляем 'commets' 
 		// дефолтные свойства массива и убираем проверку на массив ( !comments  )
         if ( !comments.length ) return <p>No comments yet</p>
@@ -30,7 +31,11 @@ export default class CommentList extends Component {
 				</ul>
 			)
 	}
-	toggleOpen = e => this.setState( {
-		isOpen: !this.state.isOpen
-	} )
+	// toggleOpen = e => this.setState( {
+	// 	isOpen: !this.state.isOpen
+	// } )
 }
+
+
+
+export default toggleOpen( CommentList )
